@@ -7,19 +7,19 @@ import org.junit.Test;
 
 import java.util.List;
 
-public class UserDaoTest
+public class UserMapperTest
 {
     @Test
     public void test(){
         //获取sqlSession
         SqlSession sqlSession = MyBatisUtil.getSqlSession();
         //获取mapper
-        UserDao mapper = sqlSession.getMapper(UserDao.class);
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
         //执行查询
         List<User> userList = mapper.getUserList();
         for (User u:userList) {
             System.out.println(u);
         }
-        //sqlSession.close();
+        sqlSession.close();
     }
 }
