@@ -59,4 +59,16 @@ public class UserMapperTest
         sqlSession.commit();
         sqlSession.close();
     }
+
+    @Test
+    public void deleteUser(){
+        //获取sqlSession
+        SqlSession sqlSession = MyBatisUtil.getSqlSession();
+        //获取mapper
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        mapper.deleteUser(7);
+        //非常重要：增删改必须commit
+        sqlSession.commit();
+        sqlSession.close();
+    }
 }

@@ -16,4 +16,7 @@ public interface UserMapper {
 
     //编辑用户信息
     void modifyUser(User u);
+
+    //删除用户by id 这只是删除的一种方式
+    void deleteUser(int id);
 }

@@ -15,4 +15,7 @@
     <update id="modifyUser" parameterType="com.yangsen.pojo.User">
         update user set name=#{name},pwd=#{pwd} where id=#{id}
     </update>
+    <delete id="deleteUser" parameterType="int">
+        delete from user where id=#{id}
+    </delete>
 </mapper>
