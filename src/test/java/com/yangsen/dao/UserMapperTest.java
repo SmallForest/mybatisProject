@@ -34,4 +34,17 @@ public class UserMapperTest
         System.out.println(u);
         sqlSession.close();
     }
+
+    @Test
+    public void addUser(){
+        //获取sqlSession
+        SqlSession sqlSession = MyBatisUtil.getSqlSession();
+        //获取mapper
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        int num = mapper.addUser(new User(0, "麻子", "987665"));
+        System.out.println(num);
+        //非常重要：增删改必须commit
+        sqlSession.commit();
+        sqlSession.close();
+    }
 }

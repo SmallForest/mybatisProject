@@ -10,4 +10,7 @@ public interface UserMapper {
 
     //通过id获取user信息
     User getUserById(int id);
+
+    //增加用户
+    int addUser(User u);
 }
