@@ -22,4 +22,16 @@ public class UserMapperTest
         }
         sqlSession.close();
     }
+
+    @Test
+    public void getUserById(){
+        //获取sqlSession
+        SqlSession sqlSession = MyBatisUtil.getSqlSession();
+        //获取mapper
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        //通过id=3获取用户信息
+        User u =  mapper.getUserById(3);
+        System.out.println(u);
+        sqlSession.close();
+    }
 }

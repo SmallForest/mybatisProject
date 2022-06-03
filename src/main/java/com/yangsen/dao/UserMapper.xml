@@ -6,4 +6,7 @@
     <select id="getUserList" resultType="com.yangsen.pojo.User">
         select * from user
     </select>
+    <select id="getUserById" resultType="com.yangsen.pojo.User" parameterType="int">
+        select * from user where id=#{id}
+    </select>
 </mapper>
