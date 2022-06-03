@@ -13,4 +13,7 @@ public interface UserMapper {
 
     //增加用户
     int addUser(User u);
+
+    //编辑用户信息
+    void modifyUser(User u);
 }

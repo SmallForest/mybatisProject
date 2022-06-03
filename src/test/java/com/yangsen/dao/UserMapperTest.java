@@ -47,4 +47,16 @@ public class UserMapperTest
         sqlSession.commit();
         sqlSession.close();
     }
+
+    @Test
+    public void modifyUser(){
+        //获取sqlSession
+        SqlSession sqlSession = MyBatisUtil.getSqlSession();
+        //获取mapper
+        UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+        mapper.modifyUser(new User(1,"张三丰","999999"));
+        //非常重要：增删改必须commit
+        sqlSession.commit();
+        sqlSession.close();
+    }
 }

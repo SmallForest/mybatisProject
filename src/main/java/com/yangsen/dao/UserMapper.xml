@@ -12,4 +12,7 @@
     <insert id="addUser" parameterType="com.yangsen.pojo.User">
         insert into user(id,name,pwd) values (#{id},#{name},#{pwd})
     </insert>
+    <update id="modifyUser" parameterType="com.yangsen.pojo.User">
+        update user set name=#{name},pwd=#{pwd} where id=#{id}
+    </update>
 </mapper>
