@@ -6,6 +6,9 @@
     <properties resource="db.properties">
         <property name="password" value="123456"/>
     </properties>
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="false"/>
+    </settings>
     <typeAliases>
         <!--直接别名        -->
 <!--        <typeAlias alias="user" type="com.yangsen.pojo.User"/>-->
@@ -38,4 +41,5 @@
     <mappers>
         <mapper resource="com/yangsen/dao/UserMapper.xml"/>
     </mappers>
+
 </configuration>
