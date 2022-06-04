@@ -1,5 +1,8 @@
 package com.yangsen.pojo;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("Admin")
 public class User {
     private int id;
     private String name;
