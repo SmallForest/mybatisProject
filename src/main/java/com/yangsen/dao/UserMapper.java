@@ -3,6 +3,7 @@ package com.yangsen.dao;
 import com.yangsen.pojo.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserMapper {
     //定义获取user列表的接口
@@ -19,4 +20,7 @@ public interface UserMapper {
 
     //删除用户by id 这只是删除的一种方式
     void deleteUser(int id);
+
+    //增加用户，map当做参数
+    int addUserByMap(Map<String,Object> m);
 }
