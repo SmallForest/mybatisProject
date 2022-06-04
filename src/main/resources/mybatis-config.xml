@@ -8,7 +8,9 @@
     </properties>
     <typeAliases>
         <!--直接别名        -->
-        <typeAlias alias="user" type="com.yangsen.pojo.User"/>
+<!--        <typeAlias alias="user" type="com.yangsen.pojo.User"/>-->
+<!--        包名方式，javaBean User默认别名 user -->
+        <package name="com.yangsen.pojo"/>
     </typeAliases>
 
     <environments default="development">
