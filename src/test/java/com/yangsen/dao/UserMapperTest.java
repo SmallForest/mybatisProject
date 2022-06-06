@@ -1,5 +1,6 @@
 package com.yangsen.dao;
 
+import com.github.pagehelper.PageHelper;
 import com.yangsen.pojo.User;
 import com.yangsen.utils.MyBatisUtil;
 import org.apache.ibatis.session.RowBounds;
@@ -126,6 +127,22 @@ public class UserMapperTest {
             RowBounds rb = new RowBounds(0, 3);
             //执行查询
             List<User> userList = sqlSession.selectList("com.yangsen.dao.UserMapper.getUserListOfRB", null, rb);
+            for (User u : userList) {
+                logger.info(u);
+            }
+        }
+    }
+
+    @Test
+    public void userListPageHelper() {
+        //获取sqlSession 这样的写法，不用显式sqlSession.close(); 会自动关闭
+        try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
+            //获取mapper
+            UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+            //设置分页参数 页码1 每页数量10条
+            PageHelper.startPage(1,2);
+            //执行查询 非常神奇的就是拦截器实现的无侵入分页
+            List<User> userList = mapper.getUserList();
             for (User u : userList) {
                 logger.info(u);
             }
