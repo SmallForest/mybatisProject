@@ -11,6 +11,9 @@
     <select id="getUserList" resultMap="userRM">
         select * from user
     </select>
+    <select id="getUserListOfLimit" parameterType="map" resultMap="userRM">
+        select * from user limit #{startIndex},#{pageSize}
+    </select>
     <select id="getUserById" resultMap="userRM" parameterType="int">
         select * from user where id=#{id}
     </select>

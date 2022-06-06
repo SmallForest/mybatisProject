@@ -23,4 +23,6 @@ public interface UserMapper {
 
     //增加用户，map当做参数
     int addUserByMap(Map<String,Object> m);
+
+    List<User> getUserListOfLimit(Map<String,Integer> m);
 }

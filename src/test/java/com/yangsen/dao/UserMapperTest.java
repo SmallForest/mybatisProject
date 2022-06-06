@@ -96,10 +96,26 @@ public class UserMapperTest {
     }
 
     @Test
-    public void log4j2Test(){
+    public void log4j2Test() {
         logger.info("测试");
         logger.warn("测试");
         logger.debug("测试");
         logger.error("测试");
+    }
+
+    @Test
+    public void userListLimitAction() {
+        try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
+            //获取mapper
+            UserMapper mapper = sqlSession.getMapper(UserMapper.class);
+            HashMap<String, Integer> m = new HashMap<>();
+            m.put("startIndex", 0);
+            m.put("pageSize", 3);
+            //执行查询
+            List<User> userList = mapper.getUserListOfLimit(m);
+            for (User u : userList) {
+                logger.info(u);
+            }
+        }
     }
 }
