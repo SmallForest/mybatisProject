@@ -39,7 +39,9 @@
     </environments>
     <!--    注册mapper，非常重要-->
     <mappers>
-        <mapper resource="com/yangsen/dao/UserMapper.xml"/>
+<!--        <mapper resource="com/yangsen/dao/UserMapper.xml"/>-->
+<!--        <mapper class="com.yangsen.dao.UserMapper"/>-->
+        <package name="com.yangsen.dao"/>
     </mappers>
 
 </configuration>
