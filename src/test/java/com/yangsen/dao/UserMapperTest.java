@@ -3,12 +3,17 @@ package com.yangsen.dao;
 import com.yangsen.pojo.User;
 import com.yangsen.utils.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.List;
 
 public class UserMapperTest {
+    //声明logger
+    public static final Logger logger = LogManager.getLogger();
+
     @Test
     public void test() {
         //获取sqlSession 这样的写法，不用显式sqlSession.close(); 会自动关闭
@@ -18,7 +23,7 @@ public class UserMapperTest {
             //执行查询
             List<User> userList = mapper.getUserList();
             for (User u : userList) {
-                System.out.println(u);
+                logger.info(u);
             }
         }
 
@@ -32,7 +37,7 @@ public class UserMapperTest {
             UserMapper mapper = sqlSession.getMapper(UserMapper.class);
             //通过id=3获取用户信息
             User u = mapper.getUserById(3);
-            System.out.println(u);
+            logger.info(u);
         }
     }
 
@@ -43,7 +48,7 @@ public class UserMapperTest {
             //获取mapper
             UserMapper mapper = sqlSession.getMapper(UserMapper.class);
             int num = mapper.addUser(new User(0, "麻子", "987665"));
-            System.out.println(num);
+            logger.info(num);
             //非常重要：增删改必须commit
             sqlSession.commit();
         }
@@ -84,9 +89,17 @@ public class UserMapperTest {
             map.put("username", "春风");
             map.put("password", "034434");
             int num = mapper.addUserByMap(map);
-            System.out.println(num);
+            logger.info(num);
             //非常重要：增删改必须commit
             sqlSession.commit();
         }
+    }
+
+    @Test
+    public void log4j2Test(){
+        logger.info("测试");
+        logger.warn("测试");
+        logger.debug("测试");
+        logger.error("测试");
     }
 }
