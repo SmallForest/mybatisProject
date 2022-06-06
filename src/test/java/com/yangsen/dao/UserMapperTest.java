@@ -2,6 +2,7 @@ package com.yangsen.dao;
 
 import com.yangsen.pojo.User;
 import com.yangsen.utils.MyBatisUtil;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -113,6 +114,18 @@ public class UserMapperTest {
             m.put("pageSize", 3);
             //执行查询
             List<User> userList = mapper.getUserListOfLimit(m);
+            for (User u : userList) {
+                logger.info(u);
+            }
+        }
+    }
+
+    @Test
+    public void userListRowBoundsAction() {
+        try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
+            RowBounds rb = new RowBounds(0, 3);
+            //执行查询
+            List<User> userList = sqlSession.selectList("com.yangsen.dao.UserMapper.getUserListOfRB", null, rb);
             for (User u : userList) {
                 logger.info(u);
             }

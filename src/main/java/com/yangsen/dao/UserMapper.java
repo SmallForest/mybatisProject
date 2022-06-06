@@ -25,4 +25,6 @@ public interface UserMapper {
     int addUserByMap(Map<String,Object> m);
 
     List<User> getUserListOfLimit(Map<String,Integer> m);
+
+    List<User> getUserListOfRB();
 }
