@@ -3,6 +3,7 @@
                 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
                 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yangsen.dao.StudentMapper">
+    <!--按照查询嵌套处理start    -->
     <resultMap id="studentTeacher" type="Student">
         <!--映射teacher-->
         <association property="teacher" column="tid" javaType="Teacher" select="getTeacher"/>
@@ -13,4 +14,21 @@
     <select id="getTeacher" resultType="Teacher">
         select * from teacher where id=${id}
     </select>
+    <!--按照查询嵌套处理end    -->
+    <!--按照结果嵌套处理start    -->
+    <select id="getStudentsResult" resultMap="studentTeacher2">
+        select s.id sid ,s.name sname,t.name tname from student s,teacher t where s.tid = t.id
+    </select>
+    <resultMap id="studentTeacher2" type="Student">
+        <!--Student实体类的property id name 之类的映射到字段名字sid sname-->
+        <result property="id" column="sid"/>
+        <result property="name" column="sname"/>
+        <!--映射teacher teacher是复杂类型是个对象-->
+        <association property="teacher" javaType="Teacher">
+            <result property="name" column="tname"/>
+        </association>
+    </resultMap>
+    <!--按照结果嵌套处理end    -->
+
+
 </mapper>

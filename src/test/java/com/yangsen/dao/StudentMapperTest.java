@@ -1,7 +1,6 @@
 package com.yangsen.dao;
 
 import com.yangsen.pojo.Student;
-import com.yangsen.pojo.Teacher;
 import com.yangsen.utils.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.logging.log4j.LogManager;
@@ -21,6 +20,19 @@ public class StudentMapperTest {
             //获取mapper
             StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
             List<Student> list = mapper.getStudents();
+            for (Student s : list) {
+                logger.info(s);
+            }
+        }
+    }
+
+    @Test
+    public void getStudentsResult(){
+        //获取sqlSession
+        try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
+            //获取mapper
+            StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+            List<Student> list = mapper.getStudentsResult();
             for (Student s : list) {
                 logger.info(s);
             }
