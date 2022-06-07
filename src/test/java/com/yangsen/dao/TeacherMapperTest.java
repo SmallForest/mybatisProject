@@ -37,4 +37,15 @@ public class TeacherMapperTest {
 
         }
     }
+    @Test
+    public void getTeacherByIdSonQuery() {
+        //获取sqlSession
+        try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
+            //获取mapper
+            TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);
+            Teacher t = mapper.getTeacherByIdSonQuery(1);
+            logger.info(t);
+
+        }
+    }
 }

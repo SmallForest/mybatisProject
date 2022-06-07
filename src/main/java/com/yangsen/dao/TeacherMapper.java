@@ -11,4 +11,6 @@ public interface TeacherMapper {
     List<Teacher> teachers();
 
     Teacher getTeacherById(@Param("tid") int id);
+
+    Teacher getTeacherByIdSonQuery(@Param("tid") int id);
 }

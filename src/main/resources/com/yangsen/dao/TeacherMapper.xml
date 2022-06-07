@@ -18,4 +18,15 @@
                 </collection>
         </resultMap>
         <!--按照结果嵌套处理end    -->
+        <!--按照查询嵌套处理start    -->
+        <select id="getTeacherByIdSonQuery" resultMap="TeacherByIdSonQuery">
+                select * from teacher where id=#{tid}
+        </select>
+        <resultMap id="TeacherByIdSonQuery" type="Teacher">
+                <collection property="students" javaType="ArrayList" ofType="Student" select="getStudentsByTeacherId" column="id"/>
+        </resultMap>
+        <select id="getStudentsByTeacherId" resultType="Student">
+                select * from student where tid=#{tid}
+        </select>
+        <!--按照查询嵌套处理end    -->
 </mapper>
