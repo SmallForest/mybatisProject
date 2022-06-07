@@ -1,6 +1,7 @@
 package com.yangsen.dao;
 
 import com.yangsen.pojo.User;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 import java.util.Map;
@@ -27,4 +28,19 @@ public interface UserMapper {
     List<User> getUserListOfLimit(Map<String,Integer> m);
 
     List<User> getUserListOfRB();
+
+    @Select("select * from user")
+    List<User> getUserListAnnotation();
+
+    @Select("select * from user where id=#{uid}")
+    User getUserByIdAnnotation(@Param("uid") int id);
+
+    @Insert("insert into user(id,name,pwd) values(#{id},#{name},#{password})")
+    void addUserAnnotation(User u);
+
+    @Update("update user set name=#{name},pwd=#{password} where id=#{id}")
+    void updateUserAnnotation(User u);
+
+    @Delete("delete from user where id=#{delId}")
+    void delUserAnnotation(@Param("delId") int id);
 }
