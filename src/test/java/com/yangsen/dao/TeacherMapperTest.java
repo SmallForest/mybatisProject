@@ -14,7 +14,7 @@ public class TeacherMapperTest {
     public static final Logger logger = LogManager.getLogger();
 
     @Test
-    public void teacher(){
+    public void teacher() {
         //获取sqlSession
         try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
             //获取mapper
@@ -23,6 +23,18 @@ public class TeacherMapperTest {
             for (Teacher u : list) {
                 logger.info(u);
             }
+        }
+    }
+
+    @Test
+    public void getTeacherById() {
+        //获取sqlSession
+        try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
+            //获取mapper
+            TeacherMapper mapper = sqlSession.getMapper(TeacherMapper.class);
+            Teacher t = mapper.getTeacherById(1);
+            logger.info(t);
+
         }
     }
 }
