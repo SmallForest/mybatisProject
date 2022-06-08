@@ -4,8 +4,20 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yangsen.dao.BlogMapper">
     <!--插入数据-->
-    <insert id="addBlog" parameterType="blog" >
-        insert into blog(id,title,author,create_time,views)
-        values (#{id},#{title},#{author},#{createTime},#{views})
+    <insert id="addBlog" parameterType="blog">
+        insert into blog(id, title, author, create_time, views)
+        values (#{id}, #{title}, #{author}, #{createTime}, #{views})
     </insert>
+
+    <!--查询数据，* 1=1的运用 主要是防止title author都未命中出错，保证正常查询数据 * -->
+    <select id="getBlogsWithIF" parameterType="map" resultType="blog">
+        select * from blog
+        where 1=1
+        <if test="title != null">
+            and title = #{title}
+        </if>
+        <if test="author != null">
+            and author = #{author}
+        </if>
+    </select>
 </mapper>

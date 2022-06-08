@@ -10,6 +10,7 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
 
 public class BlogMapperTest {
@@ -41,6 +42,21 @@ public class BlogMapperTest {
             mapper.addBlog(blog);
             //增删改commit是必须的
             sqlSession.commit();
+        }
+    }
+    @Test
+    public void getBlogsWithIF(){
+        //获取sqlSession
+        try (SqlSession sqlSession = MyBatisUtil.getSqlSession()) {
+            //获取mapper
+            BlogMapper mapper = sqlSession.getMapper(BlogMapper.class);
+            HashMap<String,String> m = new HashMap<>();
+            m.put("title","中国近代史");
+            //m.put("author","mark");
+            List<Blog> blog = mapper.getBlogsWithIF(m);
+            for (Blog b : blog) {
+                logger.info(b);
+            }
         }
     }
 }
