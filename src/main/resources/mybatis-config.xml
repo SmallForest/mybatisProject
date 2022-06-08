@@ -7,7 +7,7 @@
         <property name="password" value="123456"/>
     </properties>
     <settings>
-        <setting name="mapUnderscoreToCamelCase" value="false"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
         <setting name="logImpl" value="LOG4J2"/>
     </settings>
     <typeAliases>
